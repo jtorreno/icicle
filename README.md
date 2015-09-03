@@ -1,6 +1,6 @@
 ![stak.png](http://i.imgur.com/A4VIDYu.png)
 
--> The best real-time renderer that doesn't work. <-
+The best real-time renderer that doesn't work.
 
 # FAQ
 
