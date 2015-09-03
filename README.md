@@ -1,4 +1,4 @@
-![stak.png](http://i.imgur.com/A4VIDYu.png)
+![stak.png](http://i.imgur.com/B8NVeRL.png)
 
 The best real-time renderer that doesn't work.
 
