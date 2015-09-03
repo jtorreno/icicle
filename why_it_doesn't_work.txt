@@ -1,0 +1,10 @@
+1. There's something wrong with my "mvp" uniform. 
+2. I'm pretty sure it's because I'm not sending in the uniforms ever, and I should be sending them in per-update.
+3. I should really call that update when stak::camera is called, but I can't do this since I cannot access stak::context::glsl_program_ (yet)
+4. Stak is a horrible name and this needs to be fixed. If I can't find one by friday, I'm calling it... Icicle. Cool name huh? Hahaha get it.
+5. Context really needs glsl_program_ as a private member, I'll need to add a stak::context::create function, a no-argument constructor, and a constructor
+   that forwards it to that.
+6. Same thing for vertex_shader_ and fragment_shader_
+7. Clear is being called and then the buffer is being swapped without a draw call, anything that is drawn will be automatically be cleared.
+8. It should be -- clear() do_whatever() swap_buffers()
+9. I need sleep.
