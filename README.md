@@ -1,6 +1,6 @@
 ![stak.png](http://i.imgur.com/A4VIDYu.png)
 
-Yet another 3D OpenGL real-time rendering engine. 
+-> The best real-time renderer that doesn't work. <-
 
 # FAQ
 
