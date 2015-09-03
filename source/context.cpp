@@ -10,13 +10,6 @@
 using namespace stak;
 using namespace stak::detail;
 
-context& context::instance(int width, int height, bool fullscreen, const std::string& title)
-{
-    static context instance(width, height, fullscreen, title);
-
-    return instance;
-}
-
 context::context(int width, int height, bool fullscreen, const std::string& title)
 {
     if (!glfwInit())
@@ -83,16 +76,26 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
     glsl_program_.bind();
 }
 
-void context::refresh() noexcept
-{
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glfwSwapBuffers(window);
-    glfwPollEvents();
-}
 
 context::~context()
 {
     glfwDestroyWindow(window);
     glfwTerminate();
+}
+
+context& context::instance(int width, int height, bool fullscreen, const std::string& title)
+{
+    static context instance(width, height, fullscreen, title);
+
+    return instance;
+}
+
+void context::swap_buffers() noexcept
+{
+    glfwSwapBuffers(window);
+}
+
+void context::clear() noexcept
+{
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
