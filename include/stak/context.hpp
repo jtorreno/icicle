@@ -2,6 +2,7 @@
 
 #include <string>
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace stak
@@ -11,7 +12,7 @@ namespace stak
     public:
         ~context();
 
-        static context& instance(int width = 1600, int height = 900, bool fullscreen = false, const std::string& title = "Bugfree");
+        static context& instance(int width = 1600, int height = 900, bool fullscreen = false, const std::string& title = "Stak");
 
         void swap_buffers() noexcept;
         void clear() noexcept;
@@ -19,5 +20,6 @@ namespace stak
         context(int width, int height, bool fullscreen, const std::string& title);
 
         GLFWwindow* window;
+        detail::glsl_program glsl_program_
     };
 }

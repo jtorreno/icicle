@@ -43,7 +43,10 @@ namespace stak
         shader<ShaderT>::shader(const std::string& shader_source)
         {
             shader_handle = glCreateShader(static_cast<GLenum>(ShaderT));
-            glShaderSource(shader_handle, 1, const_cast<const char**>(&static_cast<const char* const&>(shader_source.data())), nullptr); // Fuck Tony's suggestion.
+
+            const char* shader_source_c_str = shader_source.c_str();
+
+            glShaderSource(shader_handle, 1, &shader_source_c_str, nullptr);
             glCompileShader(shader_handle);
 
             glGetShaderiv(shader_handle, GL_COMPILE_STATUS, &compile_status);

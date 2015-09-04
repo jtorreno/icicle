@@ -34,8 +34,8 @@ glsl_program::glsl_program(const vertex_shader& vertex_shader_, const fragment_s
         glGetProgramInfoLog(program_handle, log_length, &log_length, &info_log_[0]);
     }
 
-    GLuint mvp_handle = glGetUniformLocation(program_handle, "mvp");
-    glUniformMatrix4fv(mvp_handle, 1, GL_FALSE, glm::value_ptr(mvp));
+    //GLuint mvp_handle = glGetUniformLocation(program_handle, "mvp");
+    //glUniformMatrix4fv(mvp_handle, 1, GL_FALSE, glm::value_ptr(mvp));
 }
 
 glsl_program::glsl_program(glsl_program&& other) noexcept : program_handle(other.program_handle), vertex_shader_info_log(move(other.vertex_shader_info_log)), fragment_shader_info_log(move(other.fragment_shader_info_log)), link_status(other.link_status), info_log_(move(other.info_log_))

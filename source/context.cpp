@@ -10,7 +10,7 @@
 using namespace stak;
 using namespace stak::detail;
 
-context::context(int width, int height, bool fullscreen, const std::string& title)
+context::context(int width, int height, bool fullscreen, const std::string& title) : glsl_program_handle(0)
 {
     if (!glfwInit())
     {
@@ -36,32 +36,32 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
         throw std::runtime_error("Failed to initialize GLAD.");
     }
 
-    static vertex_shader vertex_shader_("#version 330 core\n"
-                                        ""
-                                        "in vec3 position;"
-                                        "in vec3 normal;"
-                                        "in vec2 texcoord;"
-                                        ""
-                                        "uniform mat4 mvp;"
-                                        ""
-                                        "void main()"
-                                        "{"
-                                        "   vec4 v = vec4(position, 1);"
-                                        "   gl_Position = mvp * v;"
-                                        "}");
+    vertex_shader vertex_shader_("#version 330 core\n"
+                                 ""
+                                 "in vec3 position;"
+                                 "in vec3 normal;"
+                                 "in vec2 texcoord;"
+                                 ""
+                                 "uniform mat4 mvp;"
+                                 ""
+                                 "void main()"
+                                 "{"
+                                 "    vec4 v = vec4(position, 1);"
+                                 "    gl_Position = mvp * v;"
+                                 "}");
     if (!vertex_shader_)
     {
         throw std::runtime_error(std::string("Failed to compile vertex shader.\nInfo log:\n\n") + vertex_shader_.info_log());
     }
 
-    static fragment_shader fragment_shader_("#version 330 core\n"
-                                            ""
-                                            "out vec4 color;"
-                                            ""
-                                            "void main()"
-                                            "{"
-                                            "   color = vec4(0.0, 1.0, 0.0, 0.5);"
-                                            "}");
+    fragment_shader fragment_shader_("#version 330 core\n"
+                                     ""
+                                     "out vec4 color;"
+                                     ""
+                                     "void main()"
+                                     "{"
+                                     "    color = vec4(0.0, 1.0, 0.0, 0.5);"
+                                     "}");
     if (!fragment_shader_)
     {
         throw std::runtime_error(std::string("Failed to compile fragment shader.\nInfo log:\n\n") + fragment_shader_.info_log());
@@ -72,6 +72,8 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
     {
         throw std::runtime_error(std::string("Failed to link glsl program.\nInfo log:\n\n") + glsl_program_.info_log());
     }
+
+    glsl_program_handle = glsl_program_;
 
     glsl_program_.bind();
 }
