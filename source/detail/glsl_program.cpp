@@ -51,22 +51,6 @@ glsl_program::~glsl_program()
     glDeleteProgram(program_handle);
 }
 
-glsl_program& glsl_program::operator=(glsl_program&& other) noexcept
-{
-    program_handle = other.program_handle;
-    matrix_handle = other.matrix_handle;
-    link_status = other.link_status;
-    info_log_ = std::move(other.info_log_);
-    vertex_shader_info_log = std::move(other.vertex_shader_info_log);
-    fragment_shader_info_log = std::move(other.fragment_shader_info_log);
-
-    other.program_handle = 0;
-    other.matrix_handle = 0;
-    other.link_status = 0;
-
-    return *this;
-}
-
 glsl_program::operator bool() const noexcept
 {
     return link_status == GL_TRUE;
