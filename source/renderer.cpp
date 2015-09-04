@@ -3,6 +3,8 @@
 #include <tinyobjloader/tiny_obj_loader.h>
 
 #include "stak/renderer.hpp"
+#include "stak/context.hpp"
+#include "stak/camera.hpp"
 
 using namespace stak;
 
@@ -57,8 +59,15 @@ void renderer::load(const renderable& renderable_)
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 0, reinterpret_cast<void*>(6 * sizeof(float)));
 }
 
-void renderer::render() const noexcept
+void renderer::render(const camera& camera_) const noexcept
 {
+    GLuint matrix_handle = glGetUniformLocation(programID, "mvp")
+    glUniformMatrix4fv(matrix_handle, 1, GL_FALSE, glm::value_ptr(camera_.mvp()));
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     glBindVertexArray(vertex_array_object);
     glDrawArrays(GL_TRIANGLES, 0, vertex_data.size() / 8);
+
+    context::instance().swap_buffers();
 }
