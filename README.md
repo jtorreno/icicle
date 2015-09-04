@@ -4,8 +4,8 @@ Pretty much the *coolest* real-time renderer that doesn't work.
 
 # FAQ
 
-Does it work? *No.*
+Does it work? *Yes.*
 
-Why doesn't it work? *I don't know.*
+Why does it work? *I don't know.*
 
-Is it ever going to work? *Maybe.*
+Is it ever going to break? *Yes.*
