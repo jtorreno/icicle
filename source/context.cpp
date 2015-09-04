@@ -70,7 +70,7 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
         throw std::runtime_error("Failed to compile fragment shader.\nInfo log:\n\n"s + fragment_shader_.info_log());
     }
 
-    static glsl_program glsl_program_(vertex_shader_, fragment_shader_);
+    glsl_program_ = {vertex_shader_, fragment_shader_};
     if (!glsl_program_)
     {
         throw std::runtime_error("Failed to link glsl program.\nInfo log:\n\n"s + glsl_program_.info_log());
