@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -24,6 +25,6 @@ namespace icicle
         void swap_buffers() noexcept;
 
         GLFWwindow* window;
-        detail::glsl_program glsl_program_;
+        std::unique_ptr<detail::glsl_program> glsl_program_;
     };
 }

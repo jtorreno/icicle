@@ -63,7 +63,7 @@ void renderer::load(const renderable& renderable_)
 
 void renderer::render(const camera& camera_) const noexcept
 {
-    GLuint matrix_handle = glGetUniformLocation(context::instance().glsl_program_, "mvp");
+    GLuint matrix_handle = glGetUniformLocation(*context::instance().glsl_program_, "mvp");
     glUniformMatrix4fv(matrix_handle, 1, GL_FALSE, glm::value_ptr(camera_.mvp()));
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
