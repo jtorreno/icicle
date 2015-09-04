@@ -20,5 +20,6 @@ namespace stak
         context(int width, int height, bool fullscreen, const std::string& title);
 
         GLFWwindow* window;
+        detail::glsl_program glsl_program_;
     };
 }

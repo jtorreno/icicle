@@ -24,8 +24,10 @@ renderable::renderable(const std::string& path) : load_status(false)
 
     load_status = true;
 
-    const auto fail = [&]()
+    const auto fail = [&](const char * encountered_what)
     {
+        error_string_.append("\nEncountered ").append(encountered_what) += '\n';
+
         meshes_.clear();
         meshes_.shrink_to_fit();
 
@@ -40,20 +42,17 @@ renderable::renderable(const std::string& path) : load_status(false)
 
     if (indicessize / static_cast<float>(firstmesh.positions.size()) == 1 / 3)
     {
-        error_string_.append("\nEncountered non-3D vertex coordinates\n");
-        fail();
+        fail("non-3D vertex coordinates");
     }
 
     if (indicessize / static_cast<float>(firstmesh.normals.size()) == 1 / 3)
     {
-        error_string_.append("\nEncountered non-3D vertex normals\n");
-        fail();
+        fail("non-3D vertex normals");
     }
 
     if (indicessize / static_cast<float>(firstmesh.texcoords.size()) == 1 / 2)
     {
-        error_string_.append("\nEncountered non-2D texture coordinates\n");
-        fail();
+        fail("non-2D texture coordinates");
     }
 }
 
