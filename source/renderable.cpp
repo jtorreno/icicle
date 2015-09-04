@@ -1,9 +1,9 @@
 #include <stdexcept>
 #include <utility>
 
-#include "stak/renderable.hpp"
+#include "icicle/renderable.hpp"
 
-using namespace stak;
+using namespace icicle;
 
 renderable::renderable(const std::string& path) : load_status(false)
 {

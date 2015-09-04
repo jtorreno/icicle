@@ -4,9 +4,9 @@
 
 #include <glad/glad.h>
 
-#include "stak/detail/shader.hpp"
+#include "icicle/detail/shader.hpp"
 
-namespace stak
+namespace icicle
 {
     namespace detail
     {
@@ -22,7 +22,7 @@ namespace stak
             ~glsl_program();
 
             operator bool() const noexcept;
-            operator GLint() const noexcept;
+            operator GLuint() const noexcept;
 
             const std::string& info_log() const noexcept;
             const std::string& shader_info_log(shader_type type) const;

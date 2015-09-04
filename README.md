@@ -1,6 +1,6 @@
-![stak.png](http://i.imgur.com/B8NVeRL.png)
+# Icicle
 
-The best real-time renderer that doesn't work.
+Pretty much the *coolest* real-time renderer that doesn't work.
 
 # FAQ
 

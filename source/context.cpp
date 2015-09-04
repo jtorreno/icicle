@@ -4,16 +4,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "stak/context.hpp"
-#include "stak/detail/shader.hpp"
-#include "stak/detail/glsl_program.hpp"
+#include "icicle/context.hpp"
+#include "icicle/detail/shader.hpp"
+#include "icicle/detail/glsl_program.hpp"
 
-using namespace stak;
-using namespace stak::detail;
+using namespace icicle;
+using namespace icicle::detail;
 
 using namespace std::literals::string_literals;
 
 context::context(int width, int height, bool fullscreen, const std::string& title)
+{
     if (!glfwInit())
     {
         throw std::runtime_error("Failed to initialize GLFW.");

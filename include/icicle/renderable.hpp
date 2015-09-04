@@ -5,7 +5,7 @@
 
 #include <tinyobjloader/tiny_obj_loader.h>
 
-namespace stak
+namespace icicle
 {
     class renderable
     {

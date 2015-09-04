@@ -5,16 +5,17 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "stak/renderer.hpp"
+#include "icicle/renderer.hpp"
+#include "icicle/detail/glsl_program.hpp"
 
-namespace stak
+namespace icicle
 {
     class context
     {
     public:
         ~context();
 
-        static context& instance(int width = 1600, int height = 900, bool fullscreen = false, const std::string& title = "Stak");
+        static context& instance(int width = 1600, int height = 900, bool fullscreen = false, const std::string& title = "Icicle");
 
         friend class renderer;
     private:

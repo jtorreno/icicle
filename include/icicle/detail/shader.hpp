@@ -6,7 +6,7 @@
 
 #include <glad/glad.h>
 
-namespace stak
+namespace icicle
 {
     namespace detail
     {

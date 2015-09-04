@@ -4,9 +4,10 @@
 
 #include <glad/glad.h>
 
-#include "stak/renderable.hpp"
+#include "icicle/renderable.hpp"
+#include "icicle/camera.hpp"
 
-namespace stak
+namespace icicle
 {
     class renderer
     {
@@ -17,7 +18,7 @@ namespace stak
         ~renderer();
 
         void load(const renderable& renderable_);
-        void render() const noexcept;
+        void render(const camera& camera_) const noexcept;
     private:
         std::vector<float> vertex_data;
 

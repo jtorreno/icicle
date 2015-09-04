@@ -1,8 +1,8 @@
-# Stak
+# Icicle
 
 cmake_minimum_required (VERSION 2.8.12)
 
-project (stak)
+project (icicle)
 
 # Compiler flags
 
@@ -17,11 +17,11 @@ endif (MSVC)
 
 # Add files
 
-file (GLOB stak_source ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/detail/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp ${CMAKE_CURRENT_SOURCE_DIR}/include/detail/*.hpp)
-add_library (stak ${stak_source})
-target_include_directories(stak PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+file (GLOB icicle_source ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/source/detail/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp ${CMAKE_CURRENT_SOURCE_DIR}/include/detail/*.hpp)
+add_library (icicle ${icicle_source})
+target_include_directories(icicle PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set (stak_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include ${CMAKE_CURRENT_SOURCE_DIR}/external/glfw/include ${CMAKE_CURRENT_SOURCE_DIR}external/glm ${CMAKE_CURRENT_SOURCE_DIR}external/stb ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader/include)
+set (icicle_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include ${CMAKE_CURRENT_SOURCE_DIR}/external/glfw/include ${CMAKE_CURRENT_SOURCE_DIR}external/glm ${CMAKE_CURRENT_SOURCE_DIR}external/stb ${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader/include)
 
 # Options
 
@@ -31,7 +31,7 @@ set (BUILD_SHARED_LIBS OFF CACHE BOOL "")
 
 add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/external/glad)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/external/glad/include)
-target_link_libraries (stak glad)
+target_link_libraries (icicle glad)
 
 # GLFW Options
 
@@ -43,13 +43,13 @@ set (GLFW_BUILD_TESTS FALSE CACHE BOOL "")
 
 add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/external/glfw-3.1.1)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/external/glfw-3.1.1/include)
-target_link_libraries (stak glfw ${GLFW_LIBRARIES}) # This links OpenGL amd GLFW's other dependencies.
+target_link_libraries (icicle glfw ${GLFW_LIBRARIES}) # This links OpenGL amd GLFW's other dependencies.
 
 # Link tinyobjloader
 
 add_subdirectory (${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/external/tinyobjloader/include)
-target_link_libraries (stak tinyobjloader)
+target_link_libraries (icicle tinyobjloader)
 
 # Include GLM
 

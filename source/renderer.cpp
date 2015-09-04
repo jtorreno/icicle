@@ -2,11 +2,13 @@
 
 #include <tinyobjloader/tiny_obj_loader.h>
 
-#include "stak/renderer.hpp"
-#include "stak/context.hpp"
-#include "stak/camera.hpp"
+#include <glm/gtc/type_ptr.hpp>
 
-using namespace stak;
+#include "icicle/renderer.hpp"
+#include "icicle/context.hpp"
+#include "icicle/camera.hpp"
+
+using namespace icicle;
 
 renderer::renderer() noexcept : vertex_buffer_object(0), vertex_array_object(0)
 {
@@ -61,7 +63,7 @@ void renderer::load(const renderable& renderable_)
 
 void renderer::render(const camera& camera_) const noexcept
 {
-    GLuint matrix_handle = glGetUniformLocation(programID, "mvp")
+    GLuint matrix_handle = glGetUniformLocation(context::instance().glsl_program_, "mvp");
     glUniformMatrix4fv(matrix_handle, 1, GL_FALSE, glm::value_ptr(camera_.mvp()));
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
