@@ -1,3 +1,4 @@
+#include <string>
 #include <stdexcept>
 
 #include <glad/glad.h>
@@ -9,6 +10,8 @@
 
 using namespace stak;
 using namespace stak::detail;
+
+using namespace std::literals::string_literals;
 
 context::context(int width, int height, bool fullscreen, const std::string& title)
 {
@@ -51,7 +54,7 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
                                         "}");
     if (!vertex_shader_)
     {
-        throw std::runtime_error(std::string("Failed to compile vertex shader.\nInfo log:\n\n") + vertex_shader_.info_log());
+        throw std::runtime_error("Failed to compile vertex shader.\nInfo log:\n\n"s + vertex_shader_.info_log());
     }
 
     static fragment_shader fragment_shader_("#version 330 core\n"
@@ -64,13 +67,13 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
                                             "}");
     if (!fragment_shader_)
     {
-        throw std::runtime_error(std::string("Failed to compile fragment shader.\nInfo log:\n\n") + fragment_shader_.info_log());
+        throw std::runtime_error("Failed to compile fragment shader.\nInfo log:\n\n"s + fragment_shader_.info_log());
     }
 
     static glsl_program glsl_program_(vertex_shader_, fragment_shader_);
     if (!glsl_program_)
     {
-        throw std::runtime_error(std::string("Failed to link glsl program.\nInfo log:\n\n") + glsl_program_.info_log());
+        throw std::runtime_error("Failed to link glsl program.\nInfo log:\n\n"s + glsl_program_.info_log());
     }
 
     glsl_program_.bind();
