@@ -4,7 +4,7 @@
 
 namespace stak
 {
-    void camera(glm::vec3 position, glm::vec3 target);
+    void camera(const glm::vec3 & position, const glm::vec3 & target);
 
     extern glm::mat4 model;
     extern glm::mat4 projection;
