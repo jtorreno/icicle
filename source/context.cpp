@@ -10,8 +10,7 @@
 using namespace stak;
 using namespace stak::detail;
 
-context::context(int width, int height, bool fullscreen, const std::string& title) : glsl_program_handle(0)
-{
+context::context(int width, int height, bool fullscreen, const std::string& title)
     if (!glfwInit())
     {
         throw std::runtime_error("Failed to initialize GLFW.");
@@ -72,8 +71,6 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
     {
         throw std::runtime_error(std::string("Failed to link glsl program.\nInfo log:\n\n") + glsl_program_.info_log());
     }
-
-    glsl_program_handle = glsl_program_;
 
     glsl_program_.bind();
 }
