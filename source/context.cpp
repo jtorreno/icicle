@@ -1,4 +1,3 @@
-#include <functional>
 #include <stdexcept>
 
 #include "icicle/context.hpp"
@@ -68,7 +67,7 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
         throw std::runtime_error("Failed to compile fragment shader.\nInfo log:\n\n"s + fragment_shader_.info_log());
     }
 
-    glsl_program_ = std::make_unique<glsl_program>(std::reference_wrapper<vertex_shader>(vertex_shader_), std::reference_wrapper<fragment_shader>(fragment_shader_));
+    glsl_program_ = std::make_unique<glsl_program>(vertex_shader_, fragment_shader_);
 
     if (!glsl_program_)
     {
