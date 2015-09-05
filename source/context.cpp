@@ -1,19 +1,14 @@
-#include <string>
 #include <stdexcept>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
 
 #include "icicle/context.hpp"
 #include "icicle/detail/shader.hpp"
-#include "icicle/detail/glsl_program.hpp"
 
 using namespace icicle;
 using namespace icicle::detail;
 
 using namespace std::literals::string_literals;
 
-context::context(int width, int height, bool fullscreen, const std::string& title)
+context::context(int width, int height, bool fullscreen, const std::string& title) : width_(width), height_(height)
 {
     if (!glfwInit())
     {
@@ -25,12 +20,14 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    window = glfwCreateWindow(width, height, title.c_str(), fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
+    window = glfwCreateWindow(width_, height_, title.c_str(), fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
 
     if (!window)
     {
         throw std::runtime_error("Failed to create an OpenGL 3.3 context.");
     }
+
+    glfwSetInputMode(window, GLFW_CURSOR_DISABLED, GL_TRUE);
 
     glfwMakeContextCurrent(window);
 
@@ -71,14 +68,16 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
     }
 
     glsl_program_ = std::make_unique<glsl_program>(vertex_shader_, fragment_shader_);
+
     if (!*glsl_program_)
     {
-        throw std::runtime_error("Failed to link glsl program.\nInfo log:\n\n"s + glsl_program_->info_log());
+        throw std::runtime_error("Failed to link glsl program.\nInfo log:\n\n"s + glsl_program_ -> info_log());
     }
 
-    glsl_program_->bind();
-}
+    glsl_program_ -> bind();
 
+    glEnable(GL_DEPTH_TEST);
+}
 
 context::~context()
 {
@@ -93,7 +92,42 @@ context& context::instance(int width, int height, bool fullscreen, const std::st
     return instance;
 }
 
+bool context::should_close() const noexcept
+{
+    return glfwWindowShouldClose(window);
+}
+
+void context::resize(unsigned int width, unsigned int height) noexcept
+{
+    glfwSetWindowSize(window, width, height);
+}
+
+unsigned int context::width() const noexcept
+{
+    return width_;
+}
+
+unsigned int context::height() const noexcept
+{
+    return height_;
+}
+
+void context::set_title(std::string new_title) noexcept
+{
+    glfwSetWindowTitle(window, new_title.c_str());
+}
+
+bool context::key_is_depressed(unsigned int key) const noexcept
+{
+    return glfwGetKey(window, key) == GLFW_PRESS;
+}
+
 void context::swap_buffers() noexcept
 {
     glfwSwapBuffers(window);
+}
+
+const glsl_program& context::glsl_program() const noexcept
+{
+    return *glsl_program_;
 }

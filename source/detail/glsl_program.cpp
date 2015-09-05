@@ -9,8 +9,6 @@
 using namespace icicle;
 using namespace icicle::detail;
 
-glsl_program::glsl_program() : program_handle(0), link_status(GL_FALSE) {}
-
 glsl_program::glsl_program(const vertex_shader& vertex_shader_, const fragment_shader& fragment_shader_) : program_handle(glCreateProgram()), link_status(GL_FALSE), vertex_shader_info_log(vertex_shader_.info_log()), fragment_shader_info_log(fragment_shader_.info_log())
 {
     glAttachShader(program_handle, vertex_shader_);

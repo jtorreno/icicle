@@ -13,7 +13,6 @@ namespace icicle
         class glsl_program
         {
         public:
-            glsl_program();
             glsl_program(const vertex_shader& vertex_shader_, const fragment_shader& fragment_shader_);
             glsl_program(glsl_program&& other) noexcept;
 

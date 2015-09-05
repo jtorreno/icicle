@@ -1,11 +1,7 @@
 # Icicle
 
-Pretty much the *coolest* real-time renderer that doesn't work.
+Pretty much the *coolest* game engine.
 
 # FAQ
 
-Does it work? *Yes.*
-
-Why does it work? *I don't know.*
-
-Is it ever going to break? *Yes.*
+Why are you so good at making puns? *It comes naturally.*
