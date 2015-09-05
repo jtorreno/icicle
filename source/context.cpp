@@ -69,7 +69,7 @@ context::context(int width, int height, bool fullscreen, const std::string& titl
 
     glsl_program_ = std::make_unique<glsl_program>(vertex_shader_, fragment_shader_);
 
-    if (!*glsl_program_)
+    if (!glsl_program_)
     {
         throw std::runtime_error("Failed to link glsl program.\nInfo log:\n\n"s + glsl_program_ -> info_log());
     }
@@ -115,11 +115,6 @@ unsigned int context::height() const noexcept
 void context::set_title(std::string new_title) noexcept
 {
     glfwSetWindowTitle(window, new_title.c_str());
-}
-
-bool context::key_is_depressed(unsigned int key) const noexcept
-{
-    return glfwGetKey(window, key) == GLFW_PRESS;
 }
 
 void context::swap_buffers() noexcept

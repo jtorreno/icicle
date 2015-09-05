@@ -1,6 +1,5 @@
 #pragma once
 
-#include <array>
 #include <string>
 #include <memory>
 
@@ -28,22 +27,19 @@ namespace icicle
         unsigned int width() const noexcept;
         unsigned int height() const noexcept;
 
-        bool key_is_depressed(unsigned int key) const noexcept;
-
         friend class renderer;
         friend class camera;
     private:
         context(int width, int height, bool fullscreen, const std::string& title);
 
         void swap_buffers() noexcept;
-
         const detail::glsl_program& glsl_program() const noexcept;
 
         GLFWwindow* window;
 
+        std::unique_ptr<detail::glsl_program> glsl_program_;
+
         unsigned int width_;
         unsigned int height_;
-        
-        std::unique_ptr<detail::glsl_program> glsl_program_;
     };
 }

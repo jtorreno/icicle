@@ -61,7 +61,7 @@ void renderer::load(const renderable& renderable_)
     glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 32, reinterpret_cast<void*>(6 * sizeof(float)));
 }
 
-void renderer::render() const noexcept
+void renderer::render()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

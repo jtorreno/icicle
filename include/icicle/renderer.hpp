@@ -18,7 +18,7 @@ namespace icicle
         ~renderer();
 
         void load(const renderable& renderable_);
-        void render(const camera& camera_) const noexcept;
+        void render();
     private:
         std::vector<float> vertex_data;
 
