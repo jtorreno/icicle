@@ -4,4 +4,4 @@ Pretty much the *coolest* game engine.
 
 # FAQ
 
-Why are you so good at making puns? *It comes naturally.*
+I compiled it and executed the binary, why did it segfault? *See [here](https://www.opengl.org/) for more information.*
