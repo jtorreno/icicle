@@ -1,4 +1,4 @@
-# Icicle
+# icicle
 
 Pretty much the *coolest* game engine. It's also broken. Very *very* broken.  
 I'll fix it one day.
