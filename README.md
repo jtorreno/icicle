@@ -1,4 +1,4 @@
-# Icicle
+# icicle https://img.shields.io/badge/abandoned-yes-red.svg
 
 Pretty much the *coolest* game engine. It's also broken. Very *very* broken.  
 I'll fix it one day.
